@@ -39,6 +39,19 @@
 
 (setq inhibit-splash-screen t)
 
+(defun smart-beginning-of-line ()
+  "Move point to first non-whitespace character or beginning-of-line.
+
+Move point to the first non-whitespace character on this line.
+If point was already at that position, move point to beginning of line."
+  (interactive "^") ; Use (interactive) in Emacs 22 or older
+  (let ((oldpos (point)))
+    (back-to-indentation)
+    (and (= oldpos (point))
+         (beginning-of-line))))
+
+(global-set-key (kbd "C-a") 'smart-beginning-of-line)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
